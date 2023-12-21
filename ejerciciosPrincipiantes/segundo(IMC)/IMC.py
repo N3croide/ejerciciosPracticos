@@ -4,7 +4,7 @@ import os
 def ingresarEstudiante() -> dict:
     estudiante ={}
     nombre = input('Ingrese el nombre: ')
-    edad = input('Ingrese  la  edad: ')
+    edad = verificarDato("la edad", int)
     imc = calcularImc()
     estudiante.update({'nombre' : nombre,
                        'edad' : edad,
@@ -14,8 +14,8 @@ def ingresarEstudiante() -> dict:
 
 #Calculamos el imc y la categoria y retornamos eso como una lista
 def calcularImc() -> list:
-    altura = verificarDato('la altura')
-    peso = verificarDato('el peso')
+    altura = verificarDato('la altura', float)
+    peso = verificarDato('el peso', float)
     imc = round((peso/(altura**2)),2)
     categoriaImc = ''
     if(imc < 18.5):
@@ -34,24 +34,25 @@ def calcularImc() -> list:
     return [imc,categoriaImc]
 
 #Verficamos que el dato ingresado sea correcto
-def verificarDato(dato : str) -> float:
+def verificarDato(dato : str, tipo) -> float:
     while(True):
         try:
-            datoInput = float(input(f'Ingrese {dato}: '))
+            datoInput = tipo(input(f'Ingrese {dato}: '))
         except ValueError:
             os.system('cls')
-            print('Ingrese un numero real separado por punto ejem: (2.4)')
+            print('Ingrese un numero valido, si es real tienen que ser separados con . ')
         else:
-            return datoInput
-        
+            if datoInput >0:
+                return datoInput
+            
 #Programa principal        
 isActive =  "s"
 estudiante = {}
-os.system('cls')
+os.system('clear')
 while(isActive in "sS"):
     estudiante.update(ingresarEstudiante())
-    os.system('cls')
+    os.system('clear')
     for key, item in estudiante.items():
         print(f"{key}: {item}")
     isActive = input("Desesa ingresar otro estudiante ? S(si) N(no)\n")
-    os.system("cls")
+    os.system("clear")

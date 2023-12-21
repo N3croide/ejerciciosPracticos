@@ -4,7 +4,7 @@ import os
 def ingresarEstudiante(dicImc : dict) -> dict:
     estudiante ={}
     nombre = input('Ingrese el nombre: ')
-    edad = input('Ingrese  la  edad: ')
+    edad = verificarDato("la edad", int)
     imc = calcularImc(dicImc)
     estudiante.update({'nombre' : nombre,
                        'edad' : edad,
@@ -15,9 +15,9 @@ def ingresarEstudiante(dicImc : dict) -> dict:
 #Calculamos el imc y la categoria y retornamos eso como una lista
 def calcularImc(dicImc : dict) -> list:
     updateDiccionario = lambda diccionarioUpdate, tipoImcUpdate : diccionarioUpdate.update({tipoImcUpdate : (diccionarioUpdate.get(tipoImcUpdate) + 1)})
-    altura = verificarDato('la altura')
+    altura = verificarDato('la altura', float)
+    peso = verificarDato('el peso', float)
     tipoImc = ["bajo","normal","sobre peso","obesidad I","obesidad II","obesidad III"]
-    peso = verificarDato('el peso')
     imc = round((peso/(altura**2)),2)
     categoriaImc = ''
     if(imc < 18.5):
@@ -42,15 +42,16 @@ def calcularImc(dicImc : dict) -> list:
     return [imc,categoriaImc]
 
 #Verficamos que el dato ingresado sea correcto
-def verificarDato(dato : str) -> float:
+def verificarDato(dato : str, tipo) -> float:
     while(True):
         try:
-            datoInput = float(input(f'Ingrese {dato}: '))
+            datoInput = tipo(input(f'Ingrese {dato}: '))
         except ValueError:
-            os.system('clear')
-            print('Ingrese un numero real separado por punto ejem: (2.4)')
+            os.system('cls')
+            print('Ingrese un numero valido, si es real tienen que ser separados con . ')
         else:
-            return datoInput
+            if datoInput >0:
+                return datoInput
 
 
 #Programa principal        
