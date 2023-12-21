@@ -47,7 +47,7 @@ def verificarDato(dato : str) -> float:
         try:
             datoInput = float(input(f'Ingrese {dato}: '))
         except ValueError:
-            os.system('cls')
+            os.system('clear')
             print('Ingrese un numero real separado por punto ejem: (2.4)')
         else:
             return datoInput
@@ -63,10 +63,10 @@ contador ={
     "obesidad II" : 0,
     "obesidad III" : 0,
 }
-os.system('cls')
+os.system('clear')
 for i in range(0,20):
     estudiante.update({f"estudiante {i}" :ingresarEstudiante(contador)})
-    os.system('cls')
+    os.system('clear')
     print("""
   Nombre      |      Edad      |     Imc       |    Categoria
 -------------------------------------------------------------------
@@ -76,7 +76,7 @@ for i in range(0,20):
         for key, item in infoCampers.items():
          print(f"{item:<10}",end="       ")
         print("")
-    os.system("pause")
-    os.system("cls")
+    input("Presione enter para continuar...")
+    os.system("clear")
 for key, item in contador.items():
     print(f"cantidad de estudiantes con categoria {key}: {item}")

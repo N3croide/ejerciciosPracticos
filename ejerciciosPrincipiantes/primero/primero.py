@@ -27,4 +27,3 @@ os.system("cls")
 for i in range(0,3):
     numero += pedirNum()
 print(numero)
-
