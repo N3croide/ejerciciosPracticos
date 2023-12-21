@@ -1,5 +1,4 @@
- # <center> IMC </center>
-
+ # IMC
 | VARIABLES  | E/S  | TIPO DE DATO |
 | :--------: | :--: | :----------: |
 |  isActive  | ---  |     bool     |
@@ -17,4 +16,4 @@ La parte principal del programa lo usaremos para mostrar los datos requeridos(no
 
 3. ingresarEstudiante()
 
-   En esta función vamos ingresar los datos que vamos a mostrar al usuario
+   En esta función vamos ingresar los datos que vamos a mostrar al usuario y usaremos el resto de funciones que implementamos y al final va a retornar un diccionario llamado estudiante con los datos que necesitamos imprimir.
