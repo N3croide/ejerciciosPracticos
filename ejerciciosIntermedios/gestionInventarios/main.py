@@ -15,12 +15,13 @@ while(True):
         inv.verProd(productos)
         pausa()
     elif(optMenu == 3):
-        pass
+        inv.actualizacionStock(productos)
     elif(optMenu == 4):
-        pass
+        inv.prodCriticos(productos)
     elif(optMenu == 5):
-        pass
+        inv.ganancia(productos)
     elif(optMenu == 6):
+        borrarPantalla()
         print("Gracias por utilizar nuestro software.")
         pausa()
         break

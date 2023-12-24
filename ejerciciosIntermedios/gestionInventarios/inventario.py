@@ -26,7 +26,6 @@ def seleccionMenu() -> int:
                 print("Ingrese un numero del 1 al 6.")
                 pausa()
 
-
 def registrarProd(producto : dict) -> dict:
     while(True):
         borrarPantalla()
@@ -40,24 +39,81 @@ def registrarProd(producto : dict) -> dict:
             stockMin = comprobarDato(("Stock minimo del producto: "), int)
             stockMax = comprobarDato(("Stock maximo del producto: "), int)
             proveedor = input("Nombre del proveedor: ")
+            stock = comprobarDato("Cantidad del producto: ",int)
             prod = {
                 "codigo" : codigo,
                 "nombre" : nombre,
-                "valor de compra" : valorCompra,
-                "valor de venta" : valorVenta,
-                "stock minimo" : stockMin,
-                "stock maximo" : stockMax,
-                "proveedor" : proveedor
+                "valorCompra" : valorCompra,
+                "valorVenta" : valorVenta,
+                "stockMinimo" : stockMin,
+                "stockMaximo" : stockMax,
+                "proveedor" : proveedor,
+                "stock": stock
             }
             print(prod)
             pausa()
-            return {f"{codigo}" : prod}
+            return {codigo : prod}
 
 def verProd(prods : dict):
-    print("|  codigo   |  nombre  |  valor de compra  |  valor de venta  |  stock min  |  proveedor  |")
+    template = "{codigo:^10}|{nombre:^17}|{stock:^10}|{valorCompra:^20}|{valorVenta:^20}|{stockMinimo:^14}|{stockMaximo:^14}|{proveedor:^15}|"
+    print (template.format(codigo = "codigo", nombre = "nombre",stock= "Cantidad", valorCompra= "valor de compra",
+                            valorVenta= "valor de venta",stockMinimo = "stock minimo", stockMaximo= "stock maximo", proveedor= "proveedor"))
+    print("----------|-----------------|----------|--------------------|--------------------|--------------|--------------|---------------|")
     for item in prods.values():
-        for valor in item.values():
-            print(f"{valor:<15}",end=" ")
+        print(template.format(**item))
+
+def actualizacionStock(productos : dict ):
+    codigo = comprobarDato("Ingrese el codigo del producto: ",int)
+    cantidad = 0
+    prod = dict()
+    stockActual = 0
+    print(productos.keys())
+    if (codigo in productos.keys()):
+        prod = productos.get(codigo)
+        stockActual = prod.get("stock")
+        print(f"Cantidad del producto actualmente: {stockActual}")
+        while(True):
+            borrarPantalla()
+            opt = comprobarDato("1. Agregar al stock\n2. Restar al stock\nSeleccione una opcion: ",int)
+            cantidad = comprobarDato("Ingrese la cantidad a actualizar: ",int)
+            if (opt == 1):
+                break
+            elif(opt == 2):
+                cantidad = -1*cantidad
+                break
+            else:
+                print("Ingrese una opcion valida")
+        print(f"Cantidad actualizada de {stockActual} a {stockActual + cantidad}")
+        productos.get(codigo).update({"stock": (stockActual + cantidad)})
+        pausa()
+    else:
+        print("No se encontro un producto con ese codigo")
+
+def prodCriticos(productos : dict):
+    productosCriticos =  dict()
+    for key, item in productos.items():
+        if ((item.get("stockMinimo")) > (item.get("stock"))):
+            productosCriticos.update({key : item})
+    print("Los productos criticos son los siguientes: ")
+    verProd(productosCriticos)
+    pausa()
+
+def ganancia(productos : dict):
+    borrarPantalla()
+    gananciaTotal = 0
+    formato = "{nombre:^20}|{ganancia:^20}"
+    ganaciaPorProd = {}
+    for item in productos.values():
+        ganaciaProd = item.get("stock") * (item.get("valorVenta") - item.get("valorCompra"))
+        ganaciaPorProd.update( {item.get("nombre") : {"nombre" : item.get("nombre"),"ganancia" : ganaciaProd}} )
+        gananciaTotal += ganaciaProd
+    print(formato.format(nombre = " Nombre Producto", ganancia = "Ganancia"))
+    print("--------------------|--------------------")
+    for item in ganaciaPorProd.values():
+     print(formato.format(**item))
+
+    print("\nLa ganancia total es de: ",gananciaTotal)
+    pausa()
 
 def comprobarDato (cadena, tipo):
     tipoUsuario = ""
