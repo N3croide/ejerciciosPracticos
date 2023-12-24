@@ -2,18 +2,15 @@ import os
 borrarPantalla = lambda : os.system('cls')
 pausa = lambda : os.system('pause')
 
-menuPrincipal = """
-1. Registrar Dependencia
-2. Registrar consumo por dependencia : Tengan en cuenta que se debe registrar los valores
-consumidos por los dispositivos en cada una de las oficinas.
+menuPrincipal = """1. Registrar Dependencia
+2. Registrar consumo por dependencia
 3. Ver CO2 producido
 4. Dependencia que produce mayor CO2
 5. Salir
 
 """
 
-menuConsumo = """
-1. Registrar consumo de dispositivos
+menuConsumo = """1. Registrar consumo de dispositivos
 2. Registrar consumo de transporte
 3. Registrar consumo de electricidad
 4. Volver atras"""
