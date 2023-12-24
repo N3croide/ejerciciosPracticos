@@ -76,7 +76,7 @@ def mostrarCO2(dependencias : dict):
     print(f"\nEl total producido es de {totalCO2:.2f}")
     pausa()
 
-def mayoCO2(dependencias : dict):
+def mayorCO2(dependencias : dict):
     mayor = 0.0
     nombreDep = ""
     for key, item in dependencias.items():

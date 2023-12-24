@@ -14,7 +14,7 @@ while(True):
     elif(optMenu == 3):
         c.mostrarCO2(dependencias)
     elif(optMenu == 4):
-        c.mayoCO2(dependencias)
+        c.mayorCO2(dependencias)
     elif(optMenu == 5):
         print("Gracias por utilizar nuestro software")
         break
