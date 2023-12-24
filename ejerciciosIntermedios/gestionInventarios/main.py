@@ -6,11 +6,21 @@ borrarPantalla = lambda : os.system('cls')
 productos = {}
 
 while(True):
-    if():
+    borrarPantalla()
+    optMenu = inv.seleccionMenu()
+    if(optMenu == 1 ):
+        borrarPantalla()
         productos.update(inv.registrarProd(productos))
-    elif():
+    elif(optMenu == 2):
         inv.verProd(productos)
-    elif():
+        pausa()
+    elif(optMenu == 3):
         pass
-    elif():
+    elif(optMenu == 4):
         pass
+    elif(optMenu == 5):
+        pass
+    elif(optMenu == 6):
+        print("Gracias por utilizar nuestro software.")
+        pausa()
+        break
