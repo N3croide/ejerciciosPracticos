@@ -1,26 +1,5 @@
-import os, menus as me
-pausa = lambda : os.system('pause')
-borrarPantalla = lambda : os.system('cls')  
-def comprobarDato (cadena, tipo):
-    tipoUsuario = ''
-    dato =''
-    if(tipo == int):
-        tipoUsuario = 'entero'
-    elif(tipo == float):
-        tipoUsuario = 'real'
-    try:
-        dato = tipo(input(f'{cadena}'))
-    except ValueError:
-        while(type(dato) != tipo):
-            try:
-                print(f'El dato debe ser de tipo {tipoUsuario}')
-                dato = tipo(input(cadena))
-            except ValueError:
-                borrarPantalla()
-        return dato
-    else:
-        return dato
- 
+import otrasfunciones as otf, menus as me
+
 
 def registrarRuta(rutas : dict):
     opcionesBases = {
@@ -32,11 +11,11 @@ def registrarRuta(rutas : dict):
     (3, 2): "Principal: Postgresql -- Alternativa: MongoDb"
 }
     optRuta = me.seleccionMenu([1,2,3,4], 2)
-    rutaModulo = {"FundamentosProgramacion": "(Introducción a la algoritmia, PSeInt y Python)",
-            "ProgramacionWeb": "(HTML, CSS y Bootstrap)",
-            "ProgramacionFormmal": "(Java, JavaScript, C#)",
-            "BasesDatos": "",
-            "BackEnd": "(NetCore, Spring Boot, NodeJS y Express)"}
+    rutaModulo = {"FundamentosProgramacion":{"contenido":"(Introducción a la algoritmia, PSeInt y Python)", "resultados":{"aprobados":0,"reprobados":0}},
+            "ProgramacionWeb": {"contenido":"(HTML, CSS y Bootstrap)","resultados":{"aprobados":0,"reprobados":0}},
+            "ProgramacionFormal":{"contenido":"(Java, JavaScript, C#)","resultados":{"aprobados":0,"reprobados":0}} ,
+            "BasesDatos": {"contenido":"","resultados":{"aprobados":0,"reprobados":0}},
+            "BackEnd": {"contenido":"(NetCore, Spring Boot, NodeJS y Express)","resultados":{"aprobados":0,"reprobados":0}}}
     nombreRuta = ""
     if (optRuta == 1):
         nombreRuta = "NodeJS"
@@ -46,15 +25,35 @@ def registrarRuta(rutas : dict):
         nombreRuta = "NetCore"    
     elif (optRuta == 4):
         return
-    borrarPantalla()
+    otf.borrarPantalla()
     print("Seleccione una base de datos principal y una alternativa")
-    pausa()
+    otf.pausa()
     optDbP = me.seleccionMenu([1,2,3],4)
     optDbS = me.seleccionMenu([1,2,3],4)
     if (optDbP, optDbS) in opcionesBases:
-      rutaModulo.update({"BasesDatos": opcionesBases[(optDbP, optDbS)]})
+      rutaModulo.get("BasesDatos").update({"contenido": opcionesBases[(optDbP, optDbS)]})
     
-    rutas.get(nombreRuta).get("ruta").update({"modulos": rutaModulo})
-    borrarPantalla()
-    print('\n'.join(f'{key}: {value}' for key,value in rutas.get(nombreRuta).get('ruta').get('modulos').items()))
-    pausa()
+    rutas.get(nombreRuta).update({"modulos": rutaModulo})
+    otf.borrarPantalla()
+    print('\n'.join(f'{key}: {value}' for key,value in rutas.get(nombreRuta).get('modulos').items()))
+    otf.pausa()
+
+def regTrainers(trainers : tuple, db :dict):
+    otf.borrarPantalla()
+    nombre = otf.comprobarDato("Ingrese el nombre del trainer: ", str)
+    trainers.append(nombre)
+    print("A continuacion selecccione la ruta a la que sera asignado el trainer")
+    otf.pausa()
+    optRuta = me.seleccionMenu([1,2,3,4],2)
+    nombreRuta = ""
+    if (optRuta == 1):
+        nombreRuta = "NodeJS"
+    elif (optRuta == 2):
+        nombreRuta = "Java"
+    elif (optRuta == 3):
+        nombreRuta = "NetCore"    
+    elif (optRuta == 4):
+        return
+    db.get(nombreRuta).update({"trainer": nombre})
+    print(nombre, "asignado a ",nombreRuta)
+    otf.pausa()
