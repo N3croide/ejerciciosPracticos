@@ -1,0 +1,129 @@
+{
+   "rutas": {
+      "NodeJS": {
+         "modulos": {
+            "FundamentosProgramacion": {
+               "contenido": "(Introduccion a la algoritmia, PSeInt y Python)",
+               "resultados": {
+                  "aprobados": 0,
+                  "reprobados": 0
+               }
+            },
+            "ProgramacionWeb": {
+               "contenido": "(HTML, CSS y Bootstrap)",
+               "resultados": {
+                  "aprobados": 0,
+                  "reprobados": 0
+               }
+            },
+            "ProgramacionFormal": {
+               "contenido": "(Java, JavaScript, C#)",
+               "resultados": {
+                  "aprobados": 0,
+                  "reprobados": 0
+               }
+            },
+            "BasesDatos": {
+               "contenido": "Principal: Mysql -- Alternativa: MongoDb",
+               "resultados": {
+                  "aprobados": 0,
+                  "reprobados": 0
+               }
+            },
+            "BackEnd": {
+               "contenido": "(NetCore, Spring Boot, NodeJS y Express)",
+               "resultados": {
+                  "aprobados": 0,
+                  "reprobados": 0
+               }
+            }
+         },
+         "campers": {},
+         "trainer": ""
+      },
+      "Java": {
+         "modulos": {
+            "FundamentosProgramacion": {
+               "contenido": "(Introduccion a la algoritmia, PSeInt y Python)",
+               "resultados": {
+                  "aprobados": 0,
+                  "reprobados": 0
+               }
+            },
+            "ProgramacionWeb": {
+               "contenido": "(HTML, CSS y Bootstrap)",
+               "resultados": {
+                  "aprobados": 0,
+                  "reprobados": 0
+               }
+            },
+            "ProgramacionFormal": {
+               "contenido": "(Java, JavaScript, C#)",
+               "resultados": {
+                  "aprobados": 0,
+                  "reprobados": 0
+               }
+            },
+            "BasesDatos": {
+               "contenido": "Principal: Mysql -- Alternativa: MongoDb",
+               "resultados": {
+                  "aprobados": 0,
+                  "reprobados": 0
+               }
+            },
+            "BackEnd": {
+               "contenido": "(NetCore, Spring Boot, NodeJS y Express)",
+               "resultados": {
+                  "aprobados": 0,
+                  "reprobados": 0
+               }
+            }
+         },
+         "campers": {
+            "1234567890": {
+               "ID": "1234567890",
+               "nombres": "1",
+               "apellidos": "1",
+               "direccion": "1",
+               "acudiente": "1",
+               "telefonos": {
+                  "celular": 1111111111,
+                  "fijo": 1111111
+               },
+               "estado": "aprobado",
+               "notas": {
+                  "FundamentosProgramacion": 0,
+                  "ProgramacionWeb": 0,
+                  "ProgramacionFormmal": 0,
+                  "BasesDatos": 0,
+                  "BackEnd": 0
+               },
+               "fechaInicio": "2",
+               "fechaFin": "2"
+            }
+         },
+         "trainer": ""
+      },
+      "NetCore": {
+         "modulos": {},
+         "campers": {},
+         "trainer": ""
+      }
+   },
+   "campersNuevos": {},
+   "trainers": [],
+   "salones": {
+      "1": {
+         "nombre": "Sputnik",
+         "campers": 1
+      },
+      "2": {
+         "nombre": "Apolo",
+         "campers": 0
+      },
+      "3": {
+         "nombre": "Artemis",
+         "campers": 0
+      }
+   }
+}

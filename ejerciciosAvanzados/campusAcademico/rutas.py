@@ -11,7 +11,7 @@ def registrarRuta(rutas : dict):
     (3, 2): "Principal: Postgresql -- Alternativa: MongoDb"
 }
     optRuta = me.seleccionMenu([1,2,3,4], 2)
-    rutaModulo = {"FundamentosProgramacion":{"contenido":"(Introducción a la algoritmia, PSeInt y Python)", "resultados":{"aprobados":0,"reprobados":0}},
+    rutaModulo = {"FundamentosProgramacion":{"contenido":"(Introduccion a la algoritmia, PSeInt y Python)", "resultados":{"aprobados":0,"reprobados":0}},
             "ProgramacionWeb": {"contenido":"(HTML, CSS y Bootstrap)","resultados":{"aprobados":0,"reprobados":0}},
             "ProgramacionFormal":{"contenido":"(Java, JavaScript, C#)","resultados":{"aprobados":0,"reprobados":0}} ,
             "BasesDatos": {"contenido":"","resultados":{"aprobados":0,"reprobados":0}},
@@ -30,6 +30,11 @@ def registrarRuta(rutas : dict):
     otf.pausa()
     optDbP = me.seleccionMenu([1,2,3],4)
     optDbS = me.seleccionMenu([1,2,3],4)
+    while(optDbP == optDbS):
+        print('Porfavor selecciones bases de datos diferentes, seleccione de nuevo la principal y la alternativa')
+        otf.pausa()
+        optDbP = me.seleccionMenu([1,2,3],4)
+        optDbS = me.seleccionMenu([1,2,3],4)
     if (optDbP, optDbS) in opcionesBases:
       rutaModulo.get("BasesDatos").update({"contenido": opcionesBases[(optDbP, optDbS)]})
     

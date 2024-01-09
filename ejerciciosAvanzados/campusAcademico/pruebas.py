@@ -2,11 +2,11 @@ import os, campers as camp, otrasfunciones as otf, menus as me
 
 def pruebasInicicales(campersNuevos : dict):
 
-    id = otf.comprobarDato("Ingrese el numero de identificacion del camper: ", int)
+    id = otf.comprobarDato("Ingrese el numero de identificacion del camper: ", str)
     camper = camp.buscarCamper(campersNuevos, id)
     otf.borrarPantalla()
     print("Datos del camper\n")
-    if (type(camper) == dict):
+    if (type(camper) == dict and camper.get('estado') != 'aprobado'):
         print("\n".join(f"{key}: {value}" for key, value in camper.items()))
         print("")
         notaP = otf.comprobarDato("Ingrese la nota de la prueba practica: ", float)
@@ -16,6 +16,9 @@ def pruebasInicicales(campersNuevos : dict):
             estado = "aprobado"
         print(f"El estudiante fue {estado}")
         camper.update({"estado": estado})
+        otf.pausa()
+    elif(camper.get('estado') == 'aprobado'):
+        print(f'El camper {camper.get("nombres")} ya fue aprobado')
         otf.pausa()
 
 def  pruebasModulos(db : dict):
@@ -42,6 +45,11 @@ def  pruebasModulos(db : dict):
             print("Esta ruta no cuenta con modulos registrados.")
             otf.pausa()
             return
+        if(not db.get(ruta).get('trainer')):
+            otf.borrarPantalla()
+            print('Esta ruta no tiene trainer asignado.')
+            otf.pausa()
+            return
         quicesTrabajos = 0
         teorica = 0
         practica = 0
@@ -52,7 +60,7 @@ def  pruebasModulos(db : dict):
         for key in campers.keys():
             print(templateIDNombre.format(**campers.get(key)))
 
-        id = otf.comprobarDato("Ingrese el id del camper: ", int)
+        id = otf.comprobarDato("Ingrese el id del camper: ", str)
         if (type(camp.buscarCamper(campers, id)) == dict):
             otf.borrarPantalla()
             for i, item in enumerate(listaModulos):

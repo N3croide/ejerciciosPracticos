@@ -2,8 +2,8 @@ import otrasfunciones as otf, menus as me
 
 def registrarCamper(campersNuevos : dict) -> dict:
     otf.borrarPantalla()
-    id = otf.comprobarDato("Ingrese la identificacion: ",  int)
-    while(len(str(id)) < 9): id = otf.comprobarDato("Ingrese una identificacion valida de 10 digitos: ", int)
+    id = otf.comprobarDato("Ingrese la identificacion: ",  str)
+    while(len(str(id)) < 9): id = otf.comprobarDato("Ingrese una identificacion valida de 10 digitos: ", str)
     nombre = otf.comprobarDato("Ingrese el nombre: ",  str)
     apellidos = otf.comprobarDato("Ingrese el apellido: ",  str)
     direccion = otf.comprobarDato("Ingrese la dirección: ",  str)
@@ -36,11 +36,12 @@ def registrarCamper(campersNuevos : dict) -> dict:
     otf.pausa()
     campersNuevos.update({id: camper})
 
-def buscarCamper(campers: dict, id : int) -> dict:
+def buscarCamper(campers: dict, id : str) -> dict:
     if id in campers.keys():
         return campers.get(id)
     else:
         print("No se encontro el camper con ese numero de identificacion. ")
+        otf.pausa()
 
 def matriculaCamers(db: dict, campersNuevos : dict, salones : dict):
     campersAprobados={}
@@ -51,7 +52,7 @@ def matriculaCamers(db: dict, campersNuevos : dict, salones : dict):
         for key in campersAprobados.keys():
             print(templateIDNombre.format(**campersAprobados.get(key)))
 
-        id = otf.comprobarDato("Ingrese el id del camper: ", int)
+        id = otf.comprobarDato("Ingrese el id del camper: ", str)
         if id in campersAprobados.keys():
 
             nombreRuta = ""
@@ -61,7 +62,7 @@ def matriculaCamers(db: dict, campersNuevos : dict, salones : dict):
             print("\nLista de areas de entrenamiento\n")
             for key in salones.keys():
                 print(f"{key}. {salones.get(key).get('nombre')} campers asignados: {salones.get(key).get('campers')}")
-            salon = otf.comprobarDato("Seleccion un salon: ",int)
+            salon = otf.comprobarDato("Seleccion un salon: ",str)
             while (salones.get(salon).get("campers") > 33):
                 otf.borrarPantalla()
                 print("El salon llego a su maxima capacidad, sera redirigido al menu principal")
@@ -81,7 +82,7 @@ def matriculaCamers(db: dict, campersNuevos : dict, salones : dict):
             elif (optRuta == 4):
                 return
             db.get(nombreRuta).get("campers").update({id: campersAprobados.get(id)})
-            print(f"Camper {campersAprobados.get(id).get('nombre')} asignado a la ruta {nombreRuta}")
+            print(f"Camper {campersAprobados.get(id).get('nombres')} asignado a la ruta {nombreRuta}")
             campersAprobados.pop(id)
             campersNuevos.pop(id)
         else:
